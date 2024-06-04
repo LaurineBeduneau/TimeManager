@@ -1,0 +1,42 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
+    env_file:
+      - timemanager.env
+    networks:
+      - networks1
+
+  api:
+    build: ./time_manager_api
+    ports:
+      - "4000:4000"
+    volumes:
+      - .:/time_manager_api
+    depends_on:
+      - db
+    env_file:
+      - timemanager.env
+    networks:
+      - networks1
+
+  front:
+    build: ./timemanager_front
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/timemanager_front
+    depends_on:
+      - api
+    networks:
+      - networks1
+
+networks:
+  networks1:

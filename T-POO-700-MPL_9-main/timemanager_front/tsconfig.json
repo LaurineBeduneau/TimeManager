@@ -1,0 +1,17 @@
+{
+  "files": [],
+  "include": ["./components.d.ts", "./env.d.ts", "./src/**/*", "./src/**/*.vue", "*.ts", "./src/**/*.ts", "./src/**/*.d.ts"],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    }
+  ],
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
